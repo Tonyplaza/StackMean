@@ -1,0 +1,70 @@
+<div class="row">
+
+  <!-- FORM -->
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body p-4">
+
+        <!-- FORM -->
+        <form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm)">
+          
+          <div class="card-header"><b>Informacion del producto</b></div>
+          <div class="card bg-light mb-3" style="max-width: 20rem;"></div>
+          
+          <!-- THE Id's Employee -->
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="productsService.selectedProducts._id">
+
+          <div class="form-group">
+            <input type="text" name="productId" #name="ngModel" [(ngModel)]="productsService.selectedProducts.productId"
+              placeholder="Ingrese la Id del producto" class="form-control">
+          </div>
+          
+          <div class="form-group">
+            <input type="text" name="productDescription" #name="ngModel" [(ngModel)]="productsService.selectedProducts.productDescription"
+              placeholder="Ingrese la descripcion del producto" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <div class="input-field col-s12">
+              <input type="text" name="price" #name="ngModel" [(ngModel)]="productsService.selectedProducts.price"
+                placeholder="Ingrese el precio" class="form-control">
+            </div>
+          </div>
+
+          <button class="btn btn-outline-dark" (click)="resetForm(employeeForm)">Limpiar</button>
+          <button class="btn btn-danger">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="col-md-8">
+  <table class="table table-striped">
+    <thead style="background-color: dimgrey;">
+      <th><FONT COLOR="white">ID DEL PRODUCTO</FONT></th>
+      <th><FONT COLOR="white">DESCIPCION</FONT></th>
+      <th><FONT COLOR="white">PRECIO</FONT></th>
+      <th><FONT COLOR="white">EDITAR/ELIMINAR</FONT></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of productsService.productss" class="table-light" >
+        <td>{{ employee.productId }}</td>
+        <td>{{ employee.productDescription }}</td>
+        <td>{{ employee.price }}</td>
+        <td>
+          <a (click)="editEmployee(employee)" class="btn btn-outline-dark">
+            <i class="material-icons">edit</i>
+          </a>
+          <a (click)="deleteEmployee(employee._id!, employeeForm)" class="btn btn-danger">
+            <i class="material-icons">delete</i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+

@@ -1,0 +1,15 @@
+<div class="form">
+<form #registerForm="ngForm">
+        
+          <div class="form-group" >
+            <input type="text" class="form-control" name="username" placeholder="ingrese su usuario" #_id="ngModel" [(ngModel)]="registersService.selectedRegister.username">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="ingrese su contrasena" #_id="ngModel" [(ngModel)]="registersService.selectedRegister.password">
+          </div>
+          <button class="btn btn-danger" style="margin: 10px"  
+          (click)="getComprobacion(registerForm)" (click)="resetForm(registerForm)" >  
+            INICIAR SESION
+          </button>
+        </form>
+</div>

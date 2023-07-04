@@ -1,0 +1,69 @@
+<div class="row">
+
+  <!-- FORM -->
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body p-4">
+
+        <!-- FORM -->
+        <form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm)">
+
+          <div class="card-header"><b>Informacion del pedido</b></div>
+          <div class="card bg-light mb-3" style="max-width: 20rem;"></div>
+
+          <!-- THE Id's Employee -->
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="ordersService.selectedOrders._id">
+
+          <div class="form-group">
+            <input type="text" name="customerId" #name="ngModel" [(ngModel)]="ordersService.selectedOrders.customerId"
+              placeholder="Ingrese la Id del cliente" class="form-control">
+          </div>
+          
+          <div class="form-group">
+            <input type="text" name="orderId" #name="ngModel" [(ngModel)]="ordersService.selectedOrders.orderId"
+              placeholder="Ingrese la Id de la orden" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <input type="text" name="orderStatus" #name="ngModel" [(ngModel)]="ordersService.selectedOrders.orderStatus"
+              placeholder="Ingrese el estado de la orden" class="form-control">
+          </div>
+
+
+          <button class="btn btn-outline-dark" (click)="resetForm(employeeForm)">Limpiar</button>
+          <button class="btn btn-danger">Guardar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- TABLE -->
+<div class="col-md-8">
+  <table class="table table-striped">
+    <thead style="background-color: dimgrey;">
+      <th><FONT COLOR="white">ID DEL CLIENTE</FONT></th>
+      <th><FONT COLOR="white">ID DE LA ORDEN</FONT></th>
+      <th><FONT COLOR="white">FECHA</FONT></th>
+      <th><FONT COLOR="white">ESTADO</FONT></th>
+      <th><FONT COLOR="white">EDITAR/ELIMINAR</FONT></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of ordersService.orderss" class="table-light">
+      <td>{{ employee.customerId }}</td>
+        <td>{{ employee.orderId }}</td>
+        <td>{{ employee.createdAt }}</td>
+        <td>{{ employee.orderStatus }}</td>
+        <td>
+          <a (click)="editEmployee(employee)" class="btn btn-outline-dark">
+            <i class="material-icons">edit</i>
+          </a>
+          <a (click)="deleteEmployee(employee._id!, employeeForm)" class="btn btn-danger">
+            <i class="material-icons">delete</i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
